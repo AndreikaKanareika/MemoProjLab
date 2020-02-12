@@ -6,7 +6,7 @@ namespace TeacherMemo.Services.Abstract
     public interface IMemoService
     {
         Memo Add(Memo item);
-        Memo Update(Memo item);
+     //   Memo Update(Memo item);
         void Delete(int id);
         Memo Get(int id);
         IEnumerable<Memo> GetAll();
