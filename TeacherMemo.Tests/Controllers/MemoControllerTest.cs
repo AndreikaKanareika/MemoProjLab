@@ -24,7 +24,7 @@ namespace TeacherMemo.Tests.Controllers
         private readonly Random _random;
         
 
-        public MemoControllerTest() : base()
+        public MemoControllerTest()
         {
             _createMemoValidator = new CreateMemoValidator();
             _updateMemoValidator = new UpdateMemoValidator();

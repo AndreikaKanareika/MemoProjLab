@@ -7,8 +7,9 @@ namespace TeacherMemo.Tests
 {
     public class BaseTest<T> : AutoMoqTestFixture<T> where T : class
     {
-        public BaseTest()
+        static BaseTest()
         {
+            Mapper.Reset();
             Mapper.Initialize(cfg => cfg.AddProfiles(
                 typeof(MemoProfile).Assembly,
                 typeof(Lab.Profiles.MemoProfile).Assembly
