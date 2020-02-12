@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TeacherMemo.Domain\TeacherMemo.Domain.csproj" />
+    <ProjectReference Include="..\TeacherMemo.Persistence.Abstact\TeacherMemo.Persistence.Abstact.csproj" />
+    <ProjectReference Include="..\TeacherMemo.Services.Abstract\TeacherMemo.Services.Abstract.csproj" />
+    <ProjectReference Include="..\TeacherMemo.Shared\TeacherMemo.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
