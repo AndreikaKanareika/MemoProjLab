@@ -22,7 +22,7 @@ namespace Client
             memoApi = RestService.For<IMemoAPI>(ConfigurationSettings.AppSettings["MemoApiURL"]);
         }
 
-        async Task UpdateAllMemoList()
+        private async Task UpdateAllMemoList()
         {
             List<MemoResponse> memoResponses = await memoApi.GetAllMemos();
             AllMemosGridView.Rows.Clear();
@@ -34,13 +34,13 @@ namespace Client
                 AllMemosGridView[1, rowIndex].Value = memo.SubjectName;
                 AllMemosGridView[2, rowIndex].Value = memo.LectureHours;
                 AllMemosGridView[3, rowIndex].Value = memo.LabHours;
-                AllMemosGridView[4, rowIndex].Value = controlTupeToString(memo.ControlType);
+                AllMemosGridView[4, rowIndex].Value = ControlTupeToString(memo.ControlType);
                 AllMemosGridView[5, rowIndex].Value = memo.StudentsCount;
                 rowIndex++;
             }
         }
 
-        string controlTupeToString(int type)
+        private string ControlTupeToString(int type)
         {
             if (type == 1)
                 return "Зачет";
@@ -48,7 +48,7 @@ namespace Client
                 return "Экзамен";
         }
 
-        string getControlType()
+        private string GetControlType()
         {
             if (AddExam.Checked)
                 return "Exam";
@@ -56,7 +56,7 @@ namespace Client
                 return "Test";
         }
 
-        void setContentType(int type)
+        private void SetContentType(int type)
         {
             if(type == 1)
             {
@@ -70,14 +70,14 @@ namespace Client
             }
         }
 
-        void setAllFields(MemoResponse memoResponse)
+        private void SetAllFields(MemoResponse memoResponse)
         {
             IDText.Text = memoResponse.Id.ToString();
             AddSubject.Text = memoResponse.SubjectName;
             AddLectureHours.Text = memoResponse.LectureHours.ToString();
             AddLabHours.Text = memoResponse.LabHours.ToString();
             AddStudentsCount.Text = memoResponse.StudentsCount.ToString();
-            setContentType(memoResponse.ControlType);
+            SetContentType(memoResponse.ControlType);
         }
 
         private async void RefreshList_Click(object sender, EventArgs e)
@@ -93,19 +93,19 @@ namespace Client
                 LectureHours = int.Parse(AddLectureHours.Text),
                 LabHours = int.Parse(AddLabHours.Text),
                 StudentsCount = int.Parse(AddStudentsCount.Text),
-                ControlType = getControlType()
+                ControlType = GetControlType()
             };
 
             MemoResponse memoResponse = await memoApi.CreateMemo(createMemoReqest);
 
-            setAllFields(memoResponse);
+            SetAllFields(memoResponse);
             await UpdateAllMemoList();
         }
 
         private async void GetButton_Click(object sender, EventArgs e)
         {
             MemoResponse memoResponse = await memoApi.GetMemo(int.Parse(IDText.Text));
-            setAllFields(memoResponse);
+            SetAllFields(memoResponse);
 
         }
 
@@ -118,10 +118,10 @@ namespace Client
                 LectureHours = int.Parse(AddLectureHours.Text),
                 LabHours = int.Parse(AddLabHours.Text),
                 StudentsCount = int.Parse(AddStudentsCount.Text),
-                ControlType = getControlType()
+                ControlType = GetControlType()
             };
             MemoResponse memoResponse = await memoApi.UpdateMemo(updateMemoReqest);
-            setAllFields(memoResponse);
+            SetAllFields(memoResponse);
             await UpdateAllMemoList();
         }
 
@@ -144,7 +144,7 @@ namespace Client
                 RangeGridView[1, rowIndex].Value = memo.SubjectName;
                 RangeGridView[2, rowIndex].Value = memo.LectureHours;
                 RangeGridView[3, rowIndex].Value = memo.LabHours;
-                RangeGridView[4, rowIndex].Value = controlTupeToString(memo.ControlType);
+                RangeGridView[4, rowIndex].Value = ControlTupeToString(memo.ControlType);
                 RangeGridView[5, rowIndex].Value = memo.StudentsCount;
                 rowIndex++;
             }
