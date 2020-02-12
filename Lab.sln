@@ -19,11 +19,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessLayer", "DataAcce
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PresentationLayer", "PresentationLayer", "{358085A5-0B10-4255-A682-EEEAECD2D86C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeacherMemo.Persistence.Implementation", "TeacherMemo.Persistence.Implementation\TeacherMemo.Persistence.Implementation.csproj", "{E7DC31E8-CD78-4541-852D-0B4D7181871D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeacherMemo.Persistence.Implementation", "TeacherMemo.Persistence.Implementation\TeacherMemo.Persistence.Implementation.csproj", "{E7DC31E8-CD78-4541-852D-0B4D7181871D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{BFB85CB6-55EC-4B79-97A3-678FC87A042B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeacherMemo.Shared", "TeacherMemo.Shared\TeacherMemo.Shared.csproj", "{71F5D05B-F0D6-4709-A276-0E96D02F53D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeacherMemo.Shared", "TeacherMemo.Shared\TeacherMemo.Shared.csproj", "{71F5D05B-F0D6-4709-A276-0E96D02F53D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0C23DCCE-FCF2-4FC0-BADA-41E198FC5F46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeacherMemo.Tests", "TeacherMemo.Tests\TeacherMemo.Tests.csproj", "{88717F9D-A3C4-4ABD-9BEA-1D6E9EB2496E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +63,10 @@ Global
 		{71F5D05B-F0D6-4709-A276-0E96D02F53D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71F5D05B-F0D6-4709-A276-0E96D02F53D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71F5D05B-F0D6-4709-A276-0E96D02F53D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88717F9D-A3C4-4ABD-9BEA-1D6E9EB2496E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88717F9D-A3C4-4ABD-9BEA-1D6E9EB2496E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88717F9D-A3C4-4ABD-9BEA-1D6E9EB2496E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88717F9D-A3C4-4ABD-9BEA-1D6E9EB2496E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +79,7 @@ Global
 		{508FADF1-94AA-41D8-94DE-C84AD4425340} = {214FA9E0-2A34-46B6-8D9D-AECF62C13FA1}
 		{E7DC31E8-CD78-4541-852D-0B4D7181871D} = {214FA9E0-2A34-46B6-8D9D-AECF62C13FA1}
 		{71F5D05B-F0D6-4709-A276-0E96D02F53D6} = {BFB85CB6-55EC-4B79-97A3-678FC87A042B}
+		{88717F9D-A3C4-4ABD-9BEA-1D6E9EB2496E} = {0C23DCCE-FCF2-4FC0-BADA-41E198FC5F46}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50231A44-1E89-4E38-8F76-70A498C3294C}
