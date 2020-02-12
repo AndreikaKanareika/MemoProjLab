@@ -61,7 +61,7 @@ namespace TeacherMemo.Tests.Controllers
             expectedValue.Id = 1;
 
             var validationResult = _createMemoValidator.Validate(model);
-            validationResult.IsValid.Should().BeFalse();
+            validationResult.IsValid.Should().BeTrue();
         }
 
         private CreateMemoViewModel GenerateValidCreateMemoModel()
