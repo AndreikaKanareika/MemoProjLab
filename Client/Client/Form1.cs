@@ -27,7 +27,7 @@ namespace Client
             List<MemoResponse> memoResponses = await memoApi.GetAllMemos();
             AllMemosGridView.Rows.Clear();
             int rowIndex = 0;
-            foreach(var memo in memoResponses)
+            foreach (var memo in memoResponses)
             {
                 AllMemosGridView.Rows.Add();
                 AllMemosGridView[0, rowIndex].Value = memo.Id;
@@ -58,7 +58,7 @@ namespace Client
 
         private void SetContentType(int type)
         {
-            if(type == 1)
+            if (type == 1)
             {
                 AddExam.Checked = false;
                 AddOffset.Checked = true;
@@ -87,67 +87,132 @@ namespace Client
 
         private async void AddButton_Click(object sender, EventArgs e)
         {
-            CreateMemoReqest createMemoReqest = new CreateMemoReqest
+            if (ValidateLabHoursField() && ValidateLectureHoursField())
             {
-                SubjectName = AddSubject.Text,
-                LectureHours = int.Parse(AddLectureHours.Text),
-                LabHours = int.Parse(AddLabHours.Text),
-                StudentsCount = int.Parse(AddStudentsCount.Text),
-                ControlType = GetControlType()
-            };
+                CreateMemoReqest createMemoReqest = new CreateMemoReqest
+                {
+                    SubjectName = AddSubject.Text,
+                    LectureHours = int.Parse(AddLectureHours.Text),
+                    LabHours = int.Parse(AddLabHours.Text),
+                    StudentsCount = int.Parse(AddStudentsCount.Text),
+                    ControlType = GetControlType()
+                };
 
-            MemoResponse memoResponse = await memoApi.CreateMemo(createMemoReqest);
+                MemoResponse memoResponse = await memoApi.CreateMemo(createMemoReqest);
 
-            SetAllFields(memoResponse);
-            await UpdateAllMemoList();
+                SetAllFields(memoResponse);
+                await UpdateAllMemoList();
+            }
         }
 
         private async void GetButton_Click(object sender, EventArgs e)
         {
-            MemoResponse memoResponse = await memoApi.GetMemo(int.Parse(IDText.Text));
-            SetAllFields(memoResponse);
+            if (ValidateIdField())
+            {
+                MemoResponse memoResponse = await memoApi.GetMemo(int.Parse(IDText.Text));
+                SetAllFields(memoResponse);
+            }
 
         }
 
         private async void UpdateButton_Click(object sender, EventArgs e)
         {
-            UpdateMemoReqest updateMemoReqest = new UpdateMemoReqest
+            if(ValidateIdField() && ValidateLabHoursField() && ValidateLectureHoursField())
             {
-                Id = int.Parse(IDText.Text),
-                SubjectName = AddSubject.Text,
-                LectureHours = int.Parse(AddLectureHours.Text),
-                LabHours = int.Parse(AddLabHours.Text),
-                StudentsCount = int.Parse(AddStudentsCount.Text),
-                ControlType = GetControlType()
-            };
-            MemoResponse memoResponse = await memoApi.UpdateMemo(updateMemoReqest);
-            SetAllFields(memoResponse);
-            await UpdateAllMemoList();
+                UpdateMemoReqest updateMemoReqest = new UpdateMemoReqest
+                {
+                    Id = int.Parse(IDText.Text),
+                    SubjectName = AddSubject.Text,
+                    LectureHours = int.Parse(AddLectureHours.Text),
+                    LabHours = int.Parse(AddLabHours.Text),
+                    StudentsCount = int.Parse(AddStudentsCount.Text),
+                    ControlType = GetControlType()
+                };
+                MemoResponse memoResponse = await memoApi.UpdateMemo(updateMemoReqest);
+                SetAllFields(memoResponse);
+                await UpdateAllMemoList();
+            }
+
         }
 
         private async void DeleteButton_Click(object sender, EventArgs e)
         {
-            await memoApi.DeleteMemo(int.Parse(IDText.Text));
-            await UpdateAllMemoList();
+            if (ValidateIdField())
+            {
+                await memoApi.DeleteMemo(int.Parse(IDText.Text));
+                await UpdateAllMemoList();
+            }
         }
 
         private async void RangeButton_Click(object sender, EventArgs e)
         {
-
-            List<MemoResponse> memoResponses = await memoApi.GetMemosRange(int.Parse(minLec.Text),int.Parse(MaxLec.Text));
-            RangeGridView.Rows.Clear();
-            int rowIndex = 0;
-            foreach (var memo in memoResponses)
+            if(ValidateminLecField() && ValidateMaxLecField())
             {
-                RangeGridView.Rows.Add();
-                RangeGridView[0, rowIndex].Value = memo.Id;
-                RangeGridView[1, rowIndex].Value = memo.SubjectName;
-                RangeGridView[2, rowIndex].Value = memo.LectureHours;
-                RangeGridView[3, rowIndex].Value = memo.LabHours;
-                RangeGridView[4, rowIndex].Value = ControlTupeToString(memo.ControlType);
-                RangeGridView[5, rowIndex].Value = memo.StudentsCount;
-                rowIndex++;
+                List<MemoResponse> memoResponses = await memoApi.GetMemosRange(int.Parse(minLec.Text), int.Parse(MaxLec.Text));
+                RangeGridView.Rows.Clear();
+                int rowIndex = 0;
+                foreach (var memo in memoResponses)
+                {
+                    RangeGridView.Rows.Add();
+                    RangeGridView[0, rowIndex].Value = memo.Id;
+                    RangeGridView[1, rowIndex].Value = memo.SubjectName;
+                    RangeGridView[2, rowIndex].Value = memo.LectureHours;
+                    RangeGridView[3, rowIndex].Value = memo.LabHours;
+                    RangeGridView[4, rowIndex].Value = ControlTupeToString(memo.ControlType);
+                    RangeGridView[5, rowIndex].Value = memo.StudentsCount;
+                    rowIndex++;
+                }
             }
+        }
+
+        private bool ValidateIdField()
+        {
+            if(!int.TryParse(IDText.Text, out int Num))
+            {
+                MessageBox.Show("Проверьте введенные данные!");
+                return false;
+            }
+            return true;
+        }
+
+        private bool ValidateLectureHoursField()
+        {
+            if (!int.TryParse(AddLectureHours.Text, out int Num))
+            {
+                MessageBox.Show("Проверьте введенные данные!");
+                return false;
+            }
+            return true;
+        }
+
+        private bool ValidateLabHoursField()
+        {
+            if (!int.TryParse(AddLabHours.Text, out int Num))
+            {
+                MessageBox.Show("Проверьте введенные данные!");
+                return false;
+            }
+            return true;
+        }
+
+        private bool ValidateminLecField()
+        {
+            if (!int.TryParse(minLec.Text, out int Num))
+            {
+                MessageBox.Show("Проверьте введенные данные!");
+                return false;
+            }
+            return true;
+        }
+
+        private bool ValidateMaxLecField()
+        {
+            if (!int.TryParse(MaxLec.Text, out int Num))
+            {
+                MessageBox.Show("Проверьте введенные данные!");
+                return false;
+            }
+            return true;
         }
     }
 }
