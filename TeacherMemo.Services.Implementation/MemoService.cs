@@ -13,14 +13,18 @@ namespace TeacherMemo.Services.Implementation
     public class MemoService : IMemoService
     {
         private readonly IMemoRepository _repository;
-        public MemoService(IMemoRepository repository)
+        private readonly IUserService _userService;
+
+        public MemoService(IMemoRepository repository, IUserService userService)
         {
             _repository = repository;
+            _userService = userService;
         }
 
         public Memo Add(Memo item)
         {
             var entity = Mapper.Map<MemoEntity>(item);
+            entity.UserId = _userService.CurrentUserId;
             _repository.Add(entity);
             _repository.SaveChanges();
             return Mapper.Map<Memo>(entity);
@@ -34,6 +38,7 @@ namespace TeacherMemo.Services.Implementation
             }
 
             var entity = Mapper.Map<MemoEntity>(item);
+            entity.UserId = _userService.CurrentUserId;
             _repository.Update(entity);
             _repository.SaveChanges();
             return Mapper.Map<Memo>(entity);
@@ -52,13 +57,17 @@ namespace TeacherMemo.Services.Implementation
         public Memo Get(int id)
         {
             var entity = _repository.Get(id);
+            if (entity == null || entity.UserId != _userService.CurrentUserId)
+            {
+                return null;
+            }
             return Mapper.Map<Memo>(entity);
         }
 
         public IEnumerable<Memo> GetAll()
         {
             var entities = _repository.GetAll();
-            return Mapper.Map<IEnumerable<Memo>>(entities);
+            return Mapper.Map<IEnumerable<Memo>>(entities.Where(x => x.UserId == _userService.CurrentUserId));
         }
 
         public IEnumerable<Memo> FindInRangeByLecturesHours(int from, int to)
@@ -73,7 +82,7 @@ namespace TeacherMemo.Services.Implementation
             }
 
             var entities = _repository.Find(x => x.LectureHours >= from && x.LectureHours <= to).OrderBy(x => x.LectureHours);
-            return Mapper.Map<IEnumerable<Memo>>(entities);
+            return Mapper.Map<IEnumerable<Memo>>(entities.Where(x => x.UserId == _userService.CurrentUserId));
         }
     }
 }
