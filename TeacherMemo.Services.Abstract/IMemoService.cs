@@ -10,6 +10,7 @@ namespace TeacherMemo.Services.Abstract
         void Delete(int id);
         Memo Get(int id);
         IEnumerable<Memo> GetAll();
+        IEnumerable<Memo> GetAllForAllTeachers();
         IEnumerable<Memo> FindInRangeByLecturesHours(int from, int to);
     }
 }

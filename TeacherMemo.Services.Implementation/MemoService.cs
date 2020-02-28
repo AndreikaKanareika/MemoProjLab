@@ -70,6 +70,12 @@ namespace TeacherMemo.Services.Implementation
             return Mapper.Map<IEnumerable<Memo>>(entities.Where(x => x.UserId == _userService.CurrentUserId));
         }
 
+        public IEnumerable<Memo> GetAllForAllTeachers()
+        {
+            var entities = _repository.GetAll();
+            return Mapper.Map<IEnumerable<Memo>>(entities);
+        }
+
         public IEnumerable<Memo> FindInRangeByLecturesHours(int from, int to)
         {
             if (from < 0 || to < 0)
