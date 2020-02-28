@@ -20,7 +20,7 @@ namespace Lab.Controllers
     {
         private readonly IMemoService _memoService;
 
-        public MemoController(IMemoService memoService, IUserService userService)
+        public MemoController(IMemoService memoService)
         {
             _memoService = memoService;
         }
