@@ -4,19 +4,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Lab.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TeacherMemo.Domain;
+using TeacherMemo.Identity.Entities;
 using TeacherMemo.Services.Abstract;
 
 namespace Lab.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize(AuthenticationSchemes = "Bearer", Roles = Roles.Teacher)]
     public class MemoController : ControllerBase
     {
         private readonly IMemoService _memoService;
-        public MemoController(IMemoService memoService)
+
+        public MemoController(IMemoService memoService, IUserService userService)
         {
             _memoService = memoService;
         }
