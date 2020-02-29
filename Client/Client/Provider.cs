@@ -11,15 +11,15 @@ namespace Client
 {
     public class Provider
     {
-        IMemoAPI memoApi;
         public Provider()
         {
-            memoApi = RestService.For<IMemoAPI>(ConfigurationSettings.AppSettings["MemoApiURL"]);
+            StaticStore.memoApi = RestService.For<IMemoAPI>(ConfigurationSettings.AppSettings["MemoApiURL"]);
+            
         }
 
         public async Task<MemoResponse> GetMemo(int id)
         {
-            return await memoApi.GetMemo(id);
+            return await StaticStore.memoApi.GetMemo(id, StaticStore.Token);
         }
     }
 }
