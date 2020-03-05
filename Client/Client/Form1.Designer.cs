@@ -56,11 +56,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.minLec = new System.Windows.Forms.TextBox();
-            this.MaxLec = new System.Windows.Forms.TextBox();
-            this.RangeButton = new System.Windows.Forms.Button();
             this.RangeGridView = new System.Windows.Forms.DataGridView();
             this.memoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MemoSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,6 +63,13 @@
             this.LabsHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ControlTupe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StudentCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RangeButton = new System.Windows.Forms.Button();
+            this.MaxLec = new System.Windows.Forms.TextBox();
+            this.minLec = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.ReportTextBox = new System.Windows.Forms.RichTextBox();
+            this.reportButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AllMemosGridView)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -81,14 +83,14 @@
             this.groupBox1.Controls.Add(this.AllMemosGridView);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(586, 801);
+            this.groupBox1.Size = new System.Drawing.Size(586, 445);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Список заметок";
             // 
             // RefreshList
             // 
-            this.RefreshList.Location = new System.Drawing.Point(290, 773);
+            this.RefreshList.Location = new System.Drawing.Point(291, 414);
             this.RefreshList.Name = "RefreshList";
             this.RefreshList.Size = new System.Drawing.Size(289, 23);
             this.RefreshList.TabIndex = 1;
@@ -111,7 +113,7 @@
             this.AllMemosGridView.Location = new System.Drawing.Point(6, 19);
             this.AllMemosGridView.Name = "AllMemosGridView";
             this.AllMemosGridView.ReadOnly = true;
-            this.AllMemosGridView.Size = new System.Drawing.Size(574, 747);
+            this.AllMemosGridView.Size = new System.Drawing.Size(574, 389);
             this.AllMemosGridView.TabIndex = 0;
             // 
             // Id
@@ -354,48 +356,6 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Список заметок в диопазоне";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 41);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(210, 13);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Минимальное количиство часов лекций";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 16);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(210, 13);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Минимальное количиство часов лекций";
-            // 
-            // minLec
-            // 
-            this.minLec.Location = new System.Drawing.Point(224, 13);
-            this.minLec.Name = "minLec";
-            this.minLec.Size = new System.Drawing.Size(100, 20);
-            this.minLec.TabIndex = 18;
-            // 
-            // MaxLec
-            // 
-            this.MaxLec.Location = new System.Drawing.Point(224, 38);
-            this.MaxLec.Name = "MaxLec";
-            this.MaxLec.Size = new System.Drawing.Size(100, 20);
-            this.MaxLec.TabIndex = 18;
-            // 
-            // RangeButton
-            // 
-            this.RangeButton.Location = new System.Drawing.Point(330, 13);
-            this.RangeButton.Name = "RangeButton";
-            this.RangeButton.Size = new System.Drawing.Size(199, 45);
-            this.RangeButton.TabIndex = 18;
-            this.RangeButton.Text = "Получить";
-            this.RangeButton.UseVisualStyleBackColor = true;
-            this.RangeButton.Click += new System.EventHandler(this.RangeButton_Click);
-            // 
             // RangeGridView
             // 
             this.RangeGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -453,11 +413,73 @@
             this.StudentCount.ReadOnly = true;
             this.StudentCount.Width = 80;
             // 
+            // RangeButton
+            // 
+            this.RangeButton.Location = new System.Drawing.Point(330, 13);
+            this.RangeButton.Name = "RangeButton";
+            this.RangeButton.Size = new System.Drawing.Size(199, 45);
+            this.RangeButton.TabIndex = 18;
+            this.RangeButton.Text = "Получить";
+            this.RangeButton.UseVisualStyleBackColor = true;
+            this.RangeButton.Click += new System.EventHandler(this.RangeButton_Click);
+            // 
+            // MaxLec
+            // 
+            this.MaxLec.Location = new System.Drawing.Point(224, 38);
+            this.MaxLec.Name = "MaxLec";
+            this.MaxLec.Size = new System.Drawing.Size(100, 20);
+            this.MaxLec.TabIndex = 18;
+            // 
+            // minLec
+            // 
+            this.minLec.Location = new System.Drawing.Point(224, 13);
+            this.minLec.Name = "minLec";
+            this.minLec.Size = new System.Drawing.Size(100, 20);
+            this.minLec.TabIndex = 18;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 41);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(210, 13);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Минимальное количиство часов лекций";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(8, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(210, 13);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Минимальное количиство часов лекций";
+            // 
+            // ReportTextBox
+            // 
+            this.ReportTextBox.Location = new System.Drawing.Point(12, 494);
+            this.ReportTextBox.Name = "ReportTextBox";
+            this.ReportTextBox.Size = new System.Drawing.Size(586, 313);
+            this.ReportTextBox.TabIndex = 6;
+            this.ReportTextBox.Text = "";
+            // 
+            // reportButton
+            // 
+            this.reportButton.Location = new System.Drawing.Point(18, 463);
+            this.reportButton.Name = "reportButton";
+            this.reportButton.Size = new System.Drawing.Size(574, 23);
+            this.reportButton.TabIndex = 2;
+            this.reportButton.Text = "Получить отчет";
+            this.reportButton.UseVisualStyleBackColor = true;
+            this.reportButton.Click += new System.EventHandler(this.reportButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1151, 825);
+            this.Controls.Add(this.reportButton);
+            this.Controls.Add(this.ReportTextBox);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -465,6 +487,7 @@
             this.MinimumSize = new System.Drawing.Size(1167, 864);
             this.Name = "Form1";
             this.Text = "Заметки преподавателю";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AllMemosGridView)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -518,6 +541,8 @@
         private System.Windows.Forms.Button RangeButton;
         private System.Windows.Forms.TextBox MaxLec;
         private System.Windows.Forms.TextBox minLec;
+        private System.Windows.Forms.RichTextBox ReportTextBox;
+        private System.Windows.Forms.Button reportButton;
     }
 }
 
